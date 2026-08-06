@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { environment } from '@environments/environment';
 
 
 @Component({
@@ -7,4 +8,6 @@ import { RouterOutlet } from '@angular/router';
   imports: [],
   templateUrl: './side-menu-header.html',
 })
-export class SideMenuHeader {}
+export class SideMenuHeader {
+  envs = environment;
+}
