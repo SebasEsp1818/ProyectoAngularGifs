@@ -7,5 +7,5 @@ companySlogan: "Maneja tus gifs",
 
 giphyapiKey: 'a23p0LSzWIq8IWoej6PsJLzYtgLqUAKo',
 
-
+giphyUrl: "https://api.giphy.com/v1"
 };
