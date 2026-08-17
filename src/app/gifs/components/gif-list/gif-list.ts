@@ -8,7 +8,4 @@ import { GifListItem } from "./gif-list-item/gif-list-item";
 })
 export class GifList {
   gifs = input.required<string[]>();
-
-
-
 }
