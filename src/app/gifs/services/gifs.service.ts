@@ -12,8 +12,6 @@ import { map, tap } from 'rxjs';
 export class GifService {
   private http = inject(HttpClient);
 
-
-
   trendingGifs = signal<Gif[]>([]);
   trendingGfsLoanding = signal(true);
 
@@ -41,9 +39,6 @@ export class GifService {
       });
   }
 
-
-
-  
   searchGifs(query: string) {
     return this.http
       .get<GiphyResponse>(`${environment.giphyUrl}/gifs/search`, {
@@ -58,12 +53,12 @@ export class GifService {
         map((items) => GifMapper.mapGiphyItemsToGifArray(items)),
 
         // TODO: Historial
-        tap(items => {
-          this.searchHistory.update(history => ({
+        tap((items) => {
+          this.searchHistory.update((history: any) => ({
             ...history,
             [query.toLowerCase()]: items,
-          }))
-        })
+          }));
+        }),
       );
     // .subscribe((resp) => {
     //   const gifs = GifMapper.mapGiphyItemsTGifArray(resp.data);
