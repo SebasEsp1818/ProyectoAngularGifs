@@ -1,23 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { GifList } from '../../components/gif-list/gif-list';
 import { GifService } from '../../services/gifs.service';
+import { Gif } from '../../interfaces/gif.interface';
 
 @Component({
   selector: 'app-search-page',
-  standalone: true,
-  imports: [], // Quitamos componentes fantasmas ya que el flujo es nativo
+  imports: [GifList],
   templateUrl: './search-page.html',
 })
 export default class SearchPage {
-  // Inyectamos el servicio con el nombre exacto de Moisés
-  gifService = inject(GifService);
+  
+  gifService: GifService = inject(GifService);
+  gifs: ReturnType<typeof signal<Gif[]>> = signal<Gif[]>([]);
 
-  onSearch(query: string) {
-    if (query.trim().length === 0) return;
-    this.gifService.searchGifs(query);
-  }
-
-  // Getter para pintar los resultados en el HTML
-  get gifs() {
-    return this.gifService.trendingGifs();
+ onSearch(query: string) {
+    this.gifService.searchGifs(query).subscribe((resp: Gif[]): void => {
+      this.gifs.set(resp);
+    });
   }
 }
