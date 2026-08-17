@@ -1,29 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
+import { environment } from '../../../environments/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
 
 @Injectable({providedIn: 'root'})
 export class GifsService {
 
-  private http = inject(HttpClient)
+private http = inject(HttpClient);
 
-  constructor(){
+constructor() {
+  this.loadTrendingGifs();
+}
 
-    this.loadTrendingGifs();
+loadTrendingGifs() {
+this.http.get<GiphyResponse>(`${ environment.giphyUrl }/gifs/trending`, {
+  params: {
+    api_key: environment.giphyApiKey,
+    limit: 20,
   }
-
-  loadTrendingGifs(){
-    this.http.get<GiphyResponse>(`${ environment.giphyUrl}/gifs/trending`), {
-      params: {
-        api_key: environment.giphyapiKey,
-        limit: 20,
-
-      }
-    }
-
-
-
-
-  }
+})
+}
 }
