@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from "@angular/router";
-import { SideMenuHeader } from '../../components/side-menu-header/side-menu-header';
-import { SideMenuOptions } from "../../components/side-menu-options/side-menu-options";
+import { RouterOutlet } from '@angular/router';
+import { SideMenuHeader } from '../../components/side-menu/side-menu-header/side-menu-header';
+import { SideMenuOptions } from "../../components/side-menu/side-menu-options/side-menu-options";
 import { SideMenu } from "../../components/side-menu/side-menu";
 
 @Component({
@@ -9,4 +9,4 @@ import { SideMenu } from "../../components/side-menu/side-menu";
   imports: [RouterOutlet, SideMenu],
   templateUrl: './dashboard-page.html',
 })
-export default class DashboardPageComponent {}
+export default class DashboardPage {}
